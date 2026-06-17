@@ -25,18 +25,7 @@ During this hackathon, our team members took on specific, overlapping roles to e
 
 Tardis is architected for asynchronous resilience, separation of concerns, and fast response times. Webhook requests are acknowledged immediately (<50ms), queued safely, and processed out-of-band by background workers.
 
-```mermaid
-graph TD
-    A[WhatsApp Webhook] -->|HTTP POST| C(Spring Boot Webhook Controller)
-    B[Discord Webhook] -->|HTTP POST| C
-    C -->|Fast Ingest <50ms| D{RabbitMQ Message Broker}
-    D -->|Queue: chat.messages.queue| E[Message Consumer Worker]
-    E -->|Buffer & Debounce| F[Thread-Safe Batcher Service]
-    F -->|After 5s Silence / 1m Max| G[Alibaba Qwen LLM API]
-    G -->|Generate Summaries & Importance| H[(PostgreSQL Database)]
-    H -->|Real-time Broadcast| I[WebSocket / STOMP Service]
-    I -->|Push Stream| J[React + TypeScript Frontend UI]
-```
+![System Design](system_design.png)
 
 ### 1. Ingestion Pipeline
 * **Endpoints**: HTTP POST endpoints `/api/v1/webhooks/discord` and `/api/v1/webhooks/whatsapp` receive raw payload structures.
