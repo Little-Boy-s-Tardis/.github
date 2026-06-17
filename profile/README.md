@@ -16,10 +16,10 @@ During this hackathon, our team members took on specific, overlapping roles to e
 
 | Name | Devpost | Role | Key Contributions in Tardis |
 | :--- | :--- | :--- | :--- |
-| **h1eudayne** | [@h1eudayne](https://devpost.com/h1eudayne) | Lead Backend Engineer | Developed Spring Boot webhook controllers, REST APIs, and verify-token security validation. |
+| **h1eudayne** | [@h1eudayne](https://devpost.com/h1eudayne) | Full-Stack & DevOps Lead | Implemented WebSocket STOMP streaming, Docker Compose, and historical message logging. |
 | **hahoangbach2005** | [@hahoangbach2005](https://devpost.com/hahoangbach2005) | Frontend Developer | Created React + TSX client dashboard layouts, CSS styles, and responsive UI containers. |
 | **teikv** | [@teikv](https://devpost.com/teikv) | AI & Queue Architect | Configured RabbitMQ exchanges/queues, background consumers, and Qwen-Turbo LLM API client. |
-| **mickeytran2111** | [@mickeytran2111](https://devpost.com/mickeytran2111) | Full-Stack & DevOps Lead | Implemented WebSocket STOMP streaming, Docker Compose, and historical message logging. |
+| **mickeytran2111** | [@mickeytran2111](https://devpost.com/mickeytran2111) | Lead Backend Engineer | Developed Spring Boot webhook controllers, REST APIs, and verify-token security validation. |
 
 --- ## System Architecture & Data Flow
 
