@@ -1,6 +1,6 @@
-# Antigravity Development Labs - Tardis System Architecture
+# Little Boy's Tardis - System Architecture
 
-Welcome to the engineering and architectural profile of **Antigravity Development Labs**, the team behind **Tardis**. This document outlines our team roles, development values, and the end-to-end technical system architecture of the Tardis platform.
+Welcome to the engineering and architectural profile of **Little Boy's Tardis**, the team behind **Tardis**. This document outlines our team roles, development values, and the end-to-end technical system architecture of the Tardis platform.
 
 --- ## Our Mission
 Our mission is to bridge the communication gap between event organizers (Judges) and developers. By building asynchronous, event-driven architectures combined with state-of-the-art Large Language Models (LLMs), we transform chaotic announcements into structured, real-time actionable intelligence.
