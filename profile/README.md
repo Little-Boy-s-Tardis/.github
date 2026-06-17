@@ -2,6 +2,11 @@
 
 Welcome to the engineering and architectural profile of **Little Boy's Tardis**, the team behind **Tardis**. This document outlines our team roles, development values, and the end-to-end technical system architecture of the Tardis platform.
 
+### Hackathon Metadata
+* **Hackathon Submission**: [Tardis on Devpost](https://devpost.com/software/tardis-cypz4k)
+* **Hackathon Event**: [Agentic AI Build Week 2026](https://agentic-ai-build-week-2026.devpost.com/resources)
+* **Live Demo**: [tardis-hazel.vercel.app](https://tardis-hazel.vercel.app/)
+
 --- ## Our Mission
 Our mission is to bridge the communication gap between event organizers (Judges) and developers. By building asynchronous, event-driven architectures combined with state-of-the-art Large Language Models (LLMs), we transform chaotic announcements into structured, real-time actionable intelligence.
 
@@ -9,11 +14,12 @@ Our mission is to bridge the communication gap between event organizers (Judges)
 
 During this hackathon, our team members took on specific, overlapping roles to ensure a high-quality end-to-end product:
 
-| Name | Role | Responsibilities | Key Contributions in Tardis |
+| Name | Devpost | Role | Key Contributions in Tardis |
 | :--- | :--- | :--- | :--- |
-| **Lead Backend Engineer** | Backend & AI Architect | System architecture, webhooks, queuing, AI pipeline, data persistence. | Developed Spring Boot webhook controllers, integrated RabbitMQ message queue, designed thread-safe debounce batching service, and integrated Alibaba Qwen-Turbo LLM API. |
-| **Frontend Engineer** | UI/UX & Live Stream Specialist | UI design, component building, state management, real-time WebSocket connection. | Created the React + TSX client app, developed the live Webhook Simulator pipeline visualization, styled the application with custom glassmorphism theme, and implemented STOMP WebSocket subscriber. |
-| **DevOps & QA Engineer** | Infrastructure & Testing Lead | Containerization, cloud deployment, integration test scenarios, quality assurance. | Configured PostgreSQL & RabbitMQ in Docker Compose, deployed the backend to Railway and frontend to Vercel, and built the mock webhook test scenarios file (`test_scenarios.md`). |
+| **h1eudayne** | [@h1eudayne](https://devpost.com/h1eudayne) | Lead Backend Engineer | Developed Spring Boot webhook controllers, REST APIs, and verify-token security validation. |
+| **hahoangbach2005** | [@hahoangbach2005](https://devpost.com/hahoangbach2005) | Frontend Developer | Created React + TSX client dashboard layouts, CSS styles, and responsive UI containers. |
+| **teikv** | [@teikv](https://devpost.com/teikv) | AI & Queue Architect | Configured RabbitMQ exchanges/queues, background consumers, and Qwen-Turbo LLM API client. |
+| **mickeytran2111** | [@mickeytran2111](https://devpost.com/mickeytran2111) | Full-Stack & DevOps Lead | Implemented WebSocket STOMP streaming, Docker Compose, and historical message logging. |
 
 --- ## System Architecture & Data Flow
 
