@@ -3,6 +3,7 @@
 Welcome to the engineering and architectural profile of **Little Boy's Tardis**, the team behind **Tardis**. This document outlines our team roles, development values, and the end-to-end technical system architecture of the Tardis platform.
 
 ### Hackathon Metadata
+
 * **Hackathon Submission**: [Tardis on Devpost](https://devpost.com/software/tardis-cypz4k)
 * **Hackathon Event**: [Agentic AI Build Week 2026](https://agentic-ai-build-week-2026.devpost.com/resources)
 * **Live Demo**: [tardis-hazel.vercel.app](https://tardis-hazel.vercel.app/)
@@ -19,7 +20,7 @@ During this hackathon, our team members took on specific, overlapping roles to e
 | **h1eudayne** | [@h1eudayne](https://devpost.com/h1eudayne) | Full-Stack & DevOps Lead | Implemented WebSocket STOMP streaming, Docker Compose, and historical message logging. |
 | **hahoangbach2005** | [@hahoangbach2005](https://devpost.com/hahoangbach2005) | Frontend Developer | Created React + TSX client dashboard layouts, CSS styles, and responsive UI containers. |
 | **teikv** | [@teikv](https://devpost.com/teikv) | AI & Queue Architect | Configured RabbitMQ exchanges/queues, background consumers, and Qwen-Turbo LLM API client. |
-| **mickeytran2111** | [@mickeytran2111](https://devpost.com/mickeytran2111) | Lead Backend Engineer | Developed Spring Boot webhook controllers, REST APIs, and verify-token security validation. |
+| **an1dee** | [@an1dee](https://devpost.com/an1dee) | Lead Backend Engineer | Developed Spring Boot webhook controllers, REST APIs, and verify-token security validation. |
 
 --- ## System Architecture & Data Flow
 
@@ -28,26 +29,31 @@ Tardis is architected for asynchronous resilience, separation of concerns, and f
 ![System Design](system_design.png)
 
 ### 1. Ingestion Pipeline
+
 * **Endpoints**: HTTP POST endpoints `/api/v1/webhooks/discord` and `/api/v1/webhooks/whatsapp` receive raw payload structures.
 * **Authentication**: Each request is checked for a valid `X-Webhook-Token` header.
 * **Fast Response**: The controller publishes the message to the RabbitMQ exchange and returns `200 OK` in <50ms, ensuring that client/webhook timeouts are avoided.
 
 ### 2. Message Queueing (RabbitMQ)
+
 * **Exchange**: `chat.messages.exchange` (direct type) routing messages using `chat.message.routingKey`.
 * **Queue**: `chat.messages.queue` stores ingested webhooks reliably.
 * **Reliability**: Provides safety against spikes in traffic during announcement rushes.
 
 ### 3. Thread-Safe Debounce Batcher
+
 * **Problem**: Judges often post multiple short messages sequentially to explain an issue (fragmented announcement burst).
 * **Solution**: The consumer pushes messages into a thread-safe `ChatBatcherService` which maintains active buckets per conversation.
 * **Logic**: It batches messages from the same channel until a **5-second silence window** is met (debounce) or a **1-minute maximum limit** is reached. This drastically reduces LLM tokens and consolidates context.
 
 ### 4. AI Processing & Summarization
+
 * **API Model**: `qwen-turbo` (Alibaba DashScope OpenAI-compatible interface).
 * **Prompting**: Instructs the model to extract actionable bullet points, identify keywords as tags, and categorize importance level (`HIGH`, `MEDIUM`, `LOW`).
 * **Fallback**: If the LLM service is offline, a local fallback text extractor executes automatically to ensure zero system downtime.
 
 ### 5. Broadcasting & Persistence
+
 * **PostgreSQL**: Saves the original message array, the final AI summary list, importance level, and tags.
 * **WebSocket Broadcaster**: Sends a STOMP message to `/topic/announcements`. The React app subscribes to this topic and appends the card live with rich animations.
 
